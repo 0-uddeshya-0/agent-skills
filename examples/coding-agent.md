@@ -53,7 +53,7 @@ app/utils/validators.py  ← irrelevant
 ```
 6 files read. Problem was in 2.
 
-With graphify:
+With code-map:
 ```
 task_relevant_files: [
   "app/routes/billing.py",       ← cancellation logic
