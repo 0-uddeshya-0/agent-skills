@@ -24,7 +24,7 @@ Skills you invoke mid-session — `/graphify`, `/clarify-intent`, `/tool-call-gu
 ### Claude Code
 ```bash
 # Add to your project's CLAUDE.md or run once:
-claude mcp add https://github.com/YOUR_USERNAME/agent-skills
+claude mcp add https://github.com/0-uddeshya-0/agent-skills
 ```
 
 ### Cursor / Codex / any agent
@@ -32,7 +32,7 @@ Copy the contents of any `skill.md` into your system prompt or `AGENTS.md`. Done
 
 ### Manual (always works)
 ```bash
-git clone https://github.com/YOUR_USERNAME/agent-skills
+git clone https://github.com/0-uddeshya-0/agent-skills
 # Pick a skill. Open skills/<name>/skill.md. Copy the instructions section.
 # Paste into your system prompt.
 ```
