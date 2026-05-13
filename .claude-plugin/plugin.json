@@ -1,0 +1,27 @@
+{
+  "name": "agent-skills",
+  "version": "1.0.0",
+  "description": "18 slash-command skills that fix specific agent failure modes",
+  "author": "agent-skills contributors",
+  "license": "MIT",
+  "skills": [
+    { "name": "setup", "path": "skills/setup/skill.md", "description": "Run once per repo. Creates .agent-context/ for shared project knowledge." },
+    { "name": "route-or-answer", "path": "skills/route-or-answer/skill.md", "description": "Decide: answer directly or call a tool. Stops unnecessary API calls." },
+    { "name": "clarify-intent", "path": "skills/clarify-intent/skill.md", "description": "Ask one targeted question when intent is ambiguous. Nothing when it's clear." },
+    { "name": "simplify-scope", "path": "skills/simplify-scope/skill.md", "description": "Cut task to minimum that satisfies the goal. Stops scope creep." },
+    { "name": "assumption-check", "path": "skills/assumption-check/skill.md", "description": "List hidden assumptions before executing. Block dangerous ones." },
+    { "name": "compress-context", "path": "skills/compress-context/skill.md", "description": "Shrink accumulated context 60-75% without losing decisions." },
+    { "name": "cache-hint", "path": "skills/cache-hint/skill.md", "description": "Tag output parts as reusable vs must-recompute." },
+    { "name": "caveman-summary", "path": "skills/caveman-summary/skill.md", "description": "Shortest possible version of any text. Stop writing when done." },
+    { "name": "graphify", "path": "skills/graphify/skill.md", "description": "Read codebase, map dependencies, write .agent-context/graph.md." },
+    { "name": "detect-contradiction", "path": "skills/detect-contradiction/skill.md", "description": "Compare draft against source data. Catch factual conflicts before sending." },
+    { "name": "validate-output", "path": "skills/validate-output/skill.md", "description": "Confirm output answers what was asked in the format requested." },
+    { "name": "prevent-redundancy", "path": "skills/prevent-redundancy/skill.md", "description": "Remove content already said earlier in the conversation." },
+    { "name": "format-response", "path": "skills/format-response/skill.md", "description": "Apply correct formatting for Slack / terminal / email / JSON API." },
+    { "name": "tool-call-guard", "path": "skills/tool-call-guard/skill.md", "description": "Validate tool params before execution. Block bad calls." },
+    { "name": "error-to-action", "path": "skills/error-to-action/skill.md", "description": "Convert raw error strings to plain-English explanation + next action." },
+    { "name": "tone-match", "path": "skills/tone-match/skill.md", "description": "Detect user emotional register. Adjust response tone before replying." },
+    { "name": "explain-depth", "path": "skills/explain-depth/skill.md", "description": "Calibrate explanation depth to actual expertise. No over-explaining." },
+    { "name": "humanize-output", "path": "skills/humanize-output/skill.md", "description": "Strip hollow AI-isms. Great question!, Certainly!, Absolutely! — all gone." }
+  ]
+}
