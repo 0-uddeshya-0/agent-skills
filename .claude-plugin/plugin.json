@@ -4,6 +4,7 @@
   "description": "18 slash-command skills that fix specific agent failure modes",
   "author": "agent-skills contributors",
   "license": "MIT",
+  "repository": "https://github.com/0-uddeshya-0/agent-skills",
   "skills": [
     { "name": "setup", "path": "skills/setup/skill.md", "description": "Run once per repo. Creates .agent-context/ for shared project knowledge." },
     { "name": "route-or-answer", "path": "skills/route-or-answer/skill.md", "description": "Decide: answer directly or call a tool. Stops unnecessary API calls." },
