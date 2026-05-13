@@ -23,8 +23,9 @@ jobs:
         run: |
           for skill_dir in skills/*/; do
             skill_name=$(basename "$skill_dir")
-            if ! grep -q "\"name\": \"$skill_name\"" .claude-plugin/plugin.json; then
-              echo "MISSING from plugin.json: $skill_name"
+            skill_path="skills/$skill_name/skill.md"
+            if ! grep -q "\"path\": \"$skill_path\"" .claude-plugin/plugin.json; then
+              echo "MISSING from plugin.json: $skill_path"
               exit 1
             fi
           done

@@ -23,7 +23,7 @@ Creates the following files:
 ```
 .agent-context/
 ├── context.md    # Project vocabulary, stack, decisions
-└── graph.md      # Dependency map (populated by /graphify)
+└── graph.md      # Dependency map (populated by /code-map)
 ```
 
 ## instructions
@@ -40,13 +40,12 @@ You are setting up shared project context. Do the following in order:
    - Cargo.toml → Rust
    - Look for main entry points: main.py, index.ts, app.py, server.js, cmd/
 
-3. Create .agent-context/context.md with:
-   - Detected tech stack
-   - Detected entry points
-   - Empty vocabulary table for the user to fill in
-   - Placeholder sections for decisions and failure patterns
+3. Create `.agent-context/context.md` using the exact headings/structure from `.agent-context-template/context.md`:
+   - Fill `## Tech stack` and `## Entry points` from detection
+   - Keep `## Domain vocabulary` table headers; fill only the cells you are confident about, otherwise leave them blank for the user to complete
+   - Leave `## Architecture decisions NOT to re-litigate`, `## Common failure patterns in this codebase`, and `## External services and their quirks` empty (with placeholder bullet/table rows)
 
-4. Run the equivalent of /graphify on the project and write results to .agent-context/graph.md
+4. Run the equivalent of `/code-map` on the project and write results to `.agent-context/graph.md` using the same headings/sections as `.agent-context-template/graph.md`.
 
 5. Print a summary of what was created and what the user should fill in manually.
 

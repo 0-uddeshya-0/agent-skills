@@ -3,13 +3,13 @@
 **18 slash-command skills for Claude Code, Cursor, and Codex. Each one fixes a specific failure mode.**
 
 Not a prompt library. Not a framework.  
-Skills you invoke mid-session — `/graphify`, `/clarify-intent`, `/tool-call-guard` — that do real work inside your agent tool of choice.
+Skills you invoke mid-session — `/code-map`, `/clarify-intent`, `/tool-call-guard` — that do real work inside your agent tool of choice.
 
 ---
 
 ## The failure modes these fix
 
-- Agent reads 8 files, edits the wrong one → **`/graphify`**
+- Agent reads 8 files, edits the wrong one → **`/code-map`**
 - Agent makes 4 API calls for a question it could answer directly → **`/route-or-answer`**
 - Agent ships code based on an assumption it never checked → **`/assumption-check`**
 - Agent sends an email to the wrong address because you said "send it" → **`/tool-call-guard`**
@@ -56,7 +56,7 @@ git clone https://github.com/0-uddeshya-0/agent-skills
 | [`/compress-context`](skills/compress-context/skill.md) | Shrinks accumulated conversation context 60–75% without losing decisions. |
 | [`/cache-hint`](skills/cache-hint/skill.md) | Tags which parts of output are reusable across calls and which must be recomputed. |
 | [`/caveman-summary`](skills/caveman-summary/skill.md) | Shortest possible version of any text. Forces the agent to stop writing when it's done. |
-| [`/graphify`](skills/graphify/skill.md) | Reads your codebase, maps dependencies, writes `.agent-context/graph.md`. Agent navigates like someone who's worked in the repo for a month. |
+| [`/code-map`](skills/graphify/skill.md) | Reads your codebase, maps dependencies, writes `.agent-context/graph.md`. Agent navigates like someone who's worked in the repo for a month. |
 
 ### 🛡️ Reliability — don't ship wrong things
 | Skill | What it fixes |
@@ -100,7 +100,7 @@ Skills chain. Common patterns:
 /clarify-intent → /route-or-answer → /tool-call-guard
 
 # Before any code change  
-/graphify → /assumption-check → /validate-output
+/code-map → /assumption-check → /validate-output
 
 # Before any user-facing response
 /detect-contradiction → /tone-match → /humanize-output

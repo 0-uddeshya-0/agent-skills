@@ -1,6 +1,6 @@
 # Example: Coding Agent
 
-**Skills:** `graphify` → `assumption-check` → `simplify-scope` → `validate-output`
+**Skills:** `code-map` → `assumption-check` → `simplify-scope` → `validate-output`
 
 **Problem:** Agent reads wrong files first. Refactors more than requested. Ships code based on guessed function signatures. Explains things at wrong depth.
 
@@ -12,7 +12,7 @@
 def coding_agent(task, file_list, user_context):
 
     # 1. Map the codebase before reading anything
-    graph = call_skill("graphify", file_list, detect_entry_points(file_list), task)
+    graph = call_skill("code-map", file_list, detect_entry_points(file_list), task)
     relevant_files = read_files(graph["graph"]["task_relevant_files"])
 
     # 2. Check assumptions before writing any code
@@ -43,7 +43,7 @@ def coding_agent(task, file_list, user_context):
 
 **Task:** "Fix bug where subscription cancellation doesn't send confirmation email"
 
-Without graphify — reads these files in order:
+Without code-map — reads these files in order:
 ```
 main.py          ← irrelevant
 app/config.py    ← not the problem

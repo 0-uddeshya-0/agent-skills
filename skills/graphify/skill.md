@@ -1,7 +1,7 @@
-# skill: graphify
+# skill: code-map
 
 ## purpose
-Before touching any code, build a dependency map of the codebase — which files depend on what, which are load-bearing god nodes, which clusters belong together, which files to read first for the current task. Writes the result to `.agent-context/graph.md` so future sessions reuse it without rebuilding.
+Before touching any code, build a dependency map of the codebase — which files depend on what, which are load-bearing god nodes, which clusters belong together, which files to read first for the current task. Writes the result to `.agent-context/graph.md` so future sessions reuse it without rebuilding. This is a generic "code map" / "graphify-style" pass, designed from scratch for this library.
 
 Without this, agents read files randomly and miss critical dependencies.
 
@@ -24,7 +24,7 @@ task: string                  # What you're about to do — determines relevance
 ```
 
 ## output
-Writes `.agent-context/graph.md` and returns:
+Writes `.agent-context/graph.md` (using the same headings/sections as `.agent-context-template/graph.md`) and returns:
 ```json
 {
   "graph": {
@@ -51,21 +51,37 @@ Writes `.agent-context/graph.md` and returns:
 ```
 Build a dependency map. Do not read file contents yet — work from file names and paths first.
 
+When in doubt: prefer correctness of what you do know over completeness. If you cannot verify an import relationship from the traced edges, set relationship arrays to `[]` and mark `risk` as `medium` (or omit the item from `god_nodes` / `safe_to_ignore` lists).
+
 Step 1: Identify entry points (main.py, index.ts, app.py, server.js, cmd/, routes/)
 Step 2: Read entry points only. Follow import statements 2 levels deep.
 Step 3: Classify each file:
   - entry: program starts here
-  - core: imported by 3+ other files (high risk to change)
+  - core: imported by 3+ other traced files (high risk to change)
   - util: helper functions, used by many but doesn't own domain logic
   - config: settings, env, constants
   - test: test files
-  - dead: not imported anywhere, not an entry point
+  - dead: not imported anywhere within the traced graph, and not an entry point
 
-Step 4: Identify god nodes — files imported by 3+ others
+Step 4: Identify god nodes — files with 3+ traced dependents.
+  - Only include a god node if you can verify the dependent count from the traced edges.
+  - If you cannot verify import counts, set `god_nodes` to `[]` rather than guessing.
 Step 5: Group files into clusters by directory or implied domain
 Step 6: For the current task, identify the 3–7 most relevant files to read first
 
-Write output to .agent-context/graph.md.
+Write `.agent-context/graph.md` using the template:
+- In `## God nodes`, list each `god_nodes` entry as `- <id>`.
+- In `## Entry points`, list each `entry` node as `- <id>`.
+- In `## Clusters`, create a `### <cluster name>` block for each cluster, then fill:
+  - `Files:` with the cluster's `files`
+  - `Purpose:` with the cluster's `purpose`
+- In `## Dead files`, list the union of `dead` and `safe_to_ignore` node ids as `- <id>`.
+- In `## Full node list`, fill the table from `graph.nodes`:
+  - `File` = `id`
+  - `Type` = `type`
+  - `Depends on` = join `depends_on`
+  - `Depended on by` = join `depended_on_by`
+  - `Risk` = `risk`
 Return JSON summary. summary field: 2–3 sentences on codebase shape.
 task_relevant_files must be 7 or fewer — force prioritization.
 ```

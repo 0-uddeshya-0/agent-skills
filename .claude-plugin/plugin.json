@@ -14,7 +14,7 @@
     { "name": "compress-context", "path": "skills/compress-context/skill.md", "description": "Shrink accumulated context 60-75% without losing decisions." },
     { "name": "cache-hint", "path": "skills/cache-hint/skill.md", "description": "Tag output parts as reusable vs must-recompute." },
     { "name": "caveman-summary", "path": "skills/caveman-summary/skill.md", "description": "Shortest possible version of any text. Stop writing when done." },
-    { "name": "graphify", "path": "skills/graphify/skill.md", "description": "Read codebase, map dependencies, write .agent-context/graph.md." },
+    { "name": "code-map", "path": "skills/graphify/skill.md", "description": "Read codebase, map dependencies, write .agent-context/graph.md." },
     { "name": "detect-contradiction", "path": "skills/detect-contradiction/skill.md", "description": "Compare draft against source data. Catch factual conflicts before sending." },
     { "name": "validate-output", "path": "skills/validate-output/skill.md", "description": "Confirm output answers what was asked in the format requested." },
     { "name": "prevent-redundancy", "path": "skills/prevent-redundancy/skill.md", "description": "Remove content already said earlier in the conversation." },
