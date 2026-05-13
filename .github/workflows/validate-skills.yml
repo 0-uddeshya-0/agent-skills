@@ -1,0 +1,31 @@
+name: Validate Skills
+on: [pull_request]
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Check all skills have required sections
+        run: |
+          failed=0
+          for skill_file in skills/*/skill.md; do
+            for section in "## purpose" "## when_to_use" "## when_not_to_use" "## input" "## output" "## instructions" "## constraints" "## example" "## feedback_log"; do
+              if ! grep -q "$section" "$skill_file"; then
+                echo "MISSING: $section in $skill_file"
+                failed=1
+              fi
+            done
+          done
+          if [ $failed -eq 1 ]; then exit 1; fi
+          echo "All skills valid."
+      - name: Check plugin.json matches skill directories
+        run: |
+          for skill_dir in skills/*/; do
+            skill_name=$(basename "$skill_dir")
+            if ! grep -q "\"name\": \"$skill_name\"" .claude-plugin/plugin.json; then
+              echo "MISSING from plugin.json: $skill_name"
+              exit 1
+            fi
+          done
+          echo "plugin.json is in sync."
